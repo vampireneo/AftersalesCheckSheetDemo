@@ -2,12 +2,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/card_margin"
     tools:context=".AftersalesCheckSheetDemoService">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <ImageView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:id="@+id/imageView"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/prius_v_1"
+        android:scaleType="fitCenter"
+        android:background="#ffffffff" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:scaleType="center"
+        android:background="#82000000" />
+
+    <TextView
+        android:id="@+id/away_team_name_text_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="false"
+        android:text="Inspect correct floor mats are used and properly installed"
+        android:textSize="30px"
+        android:gravity="left"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentEnd="false"
+        android:textColor="#ffffffff"
+        android:background="#64000000"
+        android:paddingLeft="@dimen/card_margin"
+        android:paddingRight="@dimen/card_margin" />
+
+    <TextView
+        android:id="@+id/footer_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="0px"
+        android:text="Driver Seat"
+        android:textSize="26px"
+        android:layout_alignParentTop="true"
+        android:gravity="right"
+        android:textColor="#ffffffff"
+        android:layout_marginRight="@dimen/card_margin"
+        android:shadowColor="#ff9b9b9b" />
+
 
 </RelativeLayout>
