@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Aftersales Check Sheet Demo</string>
+    <string name="title_activity_aftersales_check_sheet_demo_service">Aftersales Check Sheet Demo LiveCard</string>
+    <string name="action_stop">Stop</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>
