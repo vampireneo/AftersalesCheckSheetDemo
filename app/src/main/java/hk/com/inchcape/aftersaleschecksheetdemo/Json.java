@@ -3,6 +3,7 @@ package hk.com.inchcape.aftersaleschecksheetdemo;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
@@ -25,7 +26,7 @@ public class Json {
         // HTTP
         try {
             HttpClient httpclient = new DefaultHttpClient(); // for port 80 requests!
-            HttpPost httppost = new HttpPost(url);
+            HttpGet httppost = new HttpGet(url);
             HttpResponse response = httpclient.execute(httppost);
             HttpEntity entity = response.getEntity();
             is = entity.getContent();
