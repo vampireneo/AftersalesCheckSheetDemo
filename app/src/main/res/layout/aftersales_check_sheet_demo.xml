@@ -31,7 +31,7 @@
         android:background="#82000000" />
 
     <TextView
-        android:id="@+id/away_team_name_text_view"
+        android:id="@+id/instruction_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="false"
@@ -47,7 +47,7 @@
         android:paddingRight="@dimen/card_margin" />
 
     <TextView
-        android:id="@+id/footer_text"
+        android:id="@+id/section_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="false"
@@ -56,10 +56,10 @@
         android:text="Driver Seat"
         android:textSize="26px"
         android:layout_alignParentTop="true"
-        android:gravity="right"
+        android:gravity="left"
         android:textColor="#ffffffff"
         android:layout_marginRight="@dimen/card_margin"
-        android:shadowColor="#ff9b9b9b" />
+        android:paddingLeft="@dimen/card_margin" />
 
 
 </RelativeLayout>
