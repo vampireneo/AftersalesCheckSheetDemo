@@ -14,7 +14,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:src="@drawable/prius_v_1"
         android:scaleType="fitCenter"
         android:background="#ffffffff" />
 
