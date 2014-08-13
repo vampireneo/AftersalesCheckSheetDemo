@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
  * Created by neochoi on 12/8/14.
  */
 public class Json {
-    public static JSONObject getJson(String url){
+    public static JSONObject getJson(String url, String type){
 
         InputStream is = null;
         String result = "";
@@ -25,9 +25,16 @@ public class Json {
 
         // HTTP
         try {
+            HttpResponse response;
             HttpClient httpclient = new DefaultHttpClient(); // for port 80 requests!
-            HttpGet httppost = new HttpGet(url);
-            HttpResponse response = httpclient.execute(httppost);
+            if (type.equals("POST")) {
+                HttpPost httppost = new HttpPost(url);
+                response = httpclient.execute(httppost);
+            }
+            else {
+                HttpGet httpget = new HttpGet(url);
+                response = httpclient.execute(httpget);
+            }
             HttpEntity entity = response.getEntity();
             is = entity.getContent();
         } catch(Exception e) {
@@ -56,6 +63,48 @@ public class Json {
         }
 
         return jsonObject;
+
+    }
+
+    public static String getString(String url, String type){
+
+        InputStream is = null;
+        String result = "";
+        JSONObject jsonObject = null;
+
+        // HTTP
+        try {
+            HttpResponse response;
+            HttpClient httpclient = new DefaultHttpClient(); // for port 80 requests!
+            if (type.equals("POST")) {
+                HttpPost httppost = new HttpPost(url);
+                response = httpclient.execute(httppost);
+            }
+            else {
+                HttpGet httpget = new HttpGet(url);
+                response = httpclient.execute(httpget);
+            }
+            HttpEntity entity = response.getEntity();
+            is = entity.getContent();
+        } catch(Exception e) {
+            return null;
+        }
+
+        // Read response to string
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is,"utf-8"),8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            is.close();
+            result = sb.toString();
+        } catch(Exception e) {
+            return null;
+        }
+
+        return result;
 
     }
 }

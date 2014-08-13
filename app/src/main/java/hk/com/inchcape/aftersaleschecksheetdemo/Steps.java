@@ -11,6 +11,7 @@ public class Steps {
     public String imgPath;
     public Bitmap img;
     public boolean checked;
+    public String id;
 
     public void Steps() {
 

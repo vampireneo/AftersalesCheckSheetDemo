@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        setContentView(R.layout.aftersales_check_sheet_demo);
+        setContentView(R.layout.aftersales_check_sheet_demo_state);
 
         currentIndex = -1;
         changeView(currentIndex);
@@ -80,11 +80,13 @@ public class MainActivity extends Activity {
                                                      return true;
                                                  } else if (gesture == Gesture.SWIPE_RIGHT) {
                                                      Log.v(TAG, "SWIPE_RIGHT");
+                                                     if (currentIndex < 0) return true;
                                                      if (++currentIndex >= mSteps.size()) currentIndex = mSteps.size() - 1;
                                                      changeView(currentIndex);
                                                      return true;
                                                  } else if (gesture == Gesture.SWIPE_LEFT) {
                                                      Log.v(TAG, "SWIPE_LEFT");
+                                                     if (currentIndex < 0) return true;
                                                      if (--currentIndex < 0) currentIndex = 0;
                                                      changeView(currentIndex);
                                                      return true;
@@ -136,7 +138,7 @@ public class MainActivity extends Activity {
         protected ArrayList<Steps> doInBackground(String... regNo) {
             ArrayList<Steps> stepLists = new ArrayList<Steps>();
             try {
-                JSONObject response = Json.getJson(aipDomain + "/api/v1/checksheet/" + regNo[0]);
+                JSONObject response = Json.getJson(aipDomain + "/api/v1/checksheet/" + regNo[0], "GET");
                 JSONObject vehicleCheckSheet = (JSONObject) response.getJSONArray("VehicleCheckSheet").get(0);
                 JSONObject checkSheet = vehicleCheckSheet.getJSONObject("CheckSheets");
                 JSONArray steps = checkSheet.getJSONArray("Steps");
@@ -148,6 +150,7 @@ public class MainActivity extends Activity {
                     instructionStep.imgPath = aipDomain + "/images/" + step.getString("img");
                     instructionStep.img = imageFetch(instructionStep.imgPath);
                     instructionStep.checked = false;
+                    instructionStep.id = step.getString("id");
                     stepLists.add(instructionStep);
                 }
             } catch (IOException e) {
@@ -176,6 +179,31 @@ public class MainActivity extends Activity {
         }
     }
 
+    private class PostCheckSheetTask extends AsyncTask<String, Void, Boolean> {
+        public Activity activity;
+
+        public PostCheckSheetTask(Activity a) {
+            activity = a;
+        }
+
+        @Override
+        protected Boolean doInBackground(String... regNo) {
+            String data = "?data=";
+            for(int i = 0; i < mSteps.size(); i++) {
+                Steps step = mSteps.get(i);
+                data += (i == 0 ? "" : "__") + step.id + "_"  + (step.checked ? "1" : "0");
+            }
+            String response = Json.getString(aipDomain + "/api/v1/checksheet/" + regNo[0] + data, "POST");
+            return response.equals("true");
+        }
+
+        @Override
+        protected void onPostExecute(Boolean s) {
+            currentIndex = -3;
+            changeView(currentIndex);
+        }
+    }
+
     @Override
     public boolean onGenericMotionEvent(MotionEvent event) {
         if (mGestureDetector != null) {
@@ -195,6 +223,13 @@ public class MainActivity extends Activity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu (Menu menu) {
+        menu.getItem(0).setVisible(currentIndex == -2);
+        menu.getItem(1).setVisible(currentIndex == -2);
+        return true;
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.aftersales_check_sheet_demo, menu);
@@ -209,6 +244,13 @@ public class MainActivity extends Activity {
             case R.id.action_stop:
                 finish();
                 return true;
+            case R.id.action_cancel:
+                currentIndex = mSteps.size() - 1;
+                changeView(currentIndex);
+                return true;
+            case R.id.action_confirm:
+                new PostCheckSheetTask(this).execute("AA1111");
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -220,27 +262,37 @@ public class MainActivity extends Activity {
             step.checked = checked;
         }
         currentIndex = id + 1;
-        if (currentIndex >= mSteps.size()) currentIndex = mSteps.size() - 1;
+        if (currentIndex >= mSteps.size()) {
+            currentIndex = -2;
+            //currentIndex = mSteps.size() - 1;
+        }
         changeView(currentIndex);
     }
 
     private void changeView(int id) {
-        ImageView img = (ImageView) findViewById(R.id.imageView);
-        TextView instruction = (TextView) findViewById(R.id.instruction_text);
-        TextView section = (TextView) findViewById(R.id.section_text);
-        switch (id) {
-            default:
-                img.setVisibility(View.INVISIBLE);
-                instruction.setText("");
-                section.setText("");
-                break;
-        }
         if (id >= 0 && id < mSteps.size()) {
+            setContentView(R.layout.aftersales_check_sheet_demo);
+            ImageView img = (ImageView) findViewById(R.id.imageView);
+            TextView instruction = (TextView) findViewById(R.id.instruction_text);
+            TextView section = (TextView) findViewById(R.id.section_text);
+
             img.setVisibility(View.VISIBLE);
             Steps step = mSteps.get(id);
             img.setImageBitmap(step.img);
             instruction.setText(step.instruction);
             section.setText(step.section);
+        }
+        else {
+            setContentView(R.layout.aftersales_check_sheet_demo_state);
+            TextView state = (TextView) findViewById(R.id.state_text);
+            if (id == -1)
+                state.setText("Loading...");
+            else if (id == -2) {
+                state.setText("Confirm?");
+            }
+            else if (id == -3) {
+                state.setText("Done");
+            }
         }
     }
 }
