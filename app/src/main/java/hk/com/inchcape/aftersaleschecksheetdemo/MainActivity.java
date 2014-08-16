@@ -44,7 +44,7 @@ import java.util.List;
 public class MainActivity extends Activity {
     private GestureDetector mGestureDetector;
     public static String TAG = "GLASS DEMO";
-    private static String aipDomain = "http://api.inchcape.com.hk";
+    private String aipDomain = getString(R.string.APIDomain);
 
     private int currentIndex;
 
@@ -285,14 +285,9 @@ public class MainActivity extends Activity {
         else {
             setContentView(R.layout.aftersales_check_sheet_demo_state);
             TextView state = (TextView) findViewById(R.id.state_text);
-            if (id == -1)
-                state.setText("Loading...");
-            else if (id == -2) {
-                state.setText("Confirm?");
-            }
-            else if (id == -3) {
-                state.setText("Done");
-            }
+            if (id == -1) state.setText(getString(R.string.Loading));
+            else if (id == -2) state.setText(getString(R.string.Confirm));
+            else if (id == -3) state.setText(getString(R.string.Done));
         }
     }
 }
