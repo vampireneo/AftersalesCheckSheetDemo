@@ -13,8 +13,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.glass.media.Sounds;
 import com.google.android.glass.touchpad.Gesture;
@@ -44,7 +46,8 @@ import java.util.List;
 public class MainActivity extends Activity {
     private GestureDetector mGestureDetector;
     public static String TAG = "GLASS DEMO";
-    private String aipDomain = getString(R.string.APIDomain);
+    private String aipDomain = "http://api.inchcape.com.hk";
+    private String regNo = "";
 
     private int currentIndex;
 
@@ -55,6 +58,8 @@ public class MainActivity extends Activity {
         super.onCreate(bundle);
 
         setContentView(R.layout.aftersales_check_sheet_demo_state);
+
+        this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         currentIndex = -1;
         changeView(currentIndex);
@@ -124,7 +129,8 @@ public class MainActivity extends Activity {
                                                  return false;
                                              }
                                          });
-        new GetCheckSheetTask(this).execute("AA1111");
+        regNo = getIntent().getExtras().getString(getString(R.string.regNo));
+        new GetCheckSheetTask(this).execute(regNo);
     }
 
     private class GetCheckSheetTask extends AsyncTask<String, Void, ArrayList<Steps>> {
@@ -199,8 +205,10 @@ public class MainActivity extends Activity {
 
         @Override
         protected void onPostExecute(Boolean s) {
-            currentIndex = -3;
-            changeView(currentIndex);
+            Toast.makeText(activity, "Record updated.", Toast.LENGTH_SHORT).show();
+            finish();
+            //currentIndex = -3;
+            //changeView(currentIndex);
         }
     }
 
@@ -249,7 +257,7 @@ public class MainActivity extends Activity {
                 changeView(currentIndex);
                 return true;
             case R.id.action_confirm:
-                new PostCheckSheetTask(this).execute("AA1111");
+                new PostCheckSheetTask(this).execute(regNo);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

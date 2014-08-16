@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/Users/neochoi/Projects/AftersalesCheckSheetDemo/app/build/intermediates/pre-dexed/debug/zbar-e7e6ef9d9ccaf89797ca96c0accc1e624df293cf.jar"
+        jar="/Users/neochoi/Projects/AftersalesCheckSheetDemo/app/libs/zbar.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="7bbdf7ba57a8a157c0cad51e455609c70887812e"/>
+
+</pre-dex-items>

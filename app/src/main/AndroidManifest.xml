@@ -7,7 +7,10 @@
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.google.android.glass.permission.DEVELOPMENT"/>
+    <uses-permission android:name="com.google.android.glass.permission.DEVELOPMENT" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +18,7 @@
         android:label="@string/app_name" >
         <activity android:name=".LiveCardMenuActivity" />
 
-        <!--service
+        <service
             android:name=".AftersalesCheckSheetDemoService"
             android:icon="@drawable/ic_glass_logo"
             android:label="@string/title_activity_aftersales_check_sheet_demo_service" >
@@ -26,20 +29,19 @@
             <meta-data
                 android:name="com.google.android.glass.VoiceTrigger"
                 android:resource="@xml/voice_trigger" />
-        </service-->
+        </service>
 
         <activity
             android:name=".MainActivity"
             android:icon="@drawable/ic_glass_logo"
-            android:label="@string/title_activity_main"
-            android:immersive="true">
-            <intent-filter>
-                <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />
-            </intent-filter>
+            android:immersive="true"
+            android:label="@string/title_activity_main" >
+        </activity>
 
-            <meta-data
-                android:name="com.google.android.glass.VoiceTrigger"
-                android:resource="@xml/voice_trigger" />
+        <activity
+            android:name=".QRCodeActivity"
+            android:icon="@drawable/ic_glass_logo"
+            android:label="@string/title_activity_main" >
         </activity>
     </application>
 

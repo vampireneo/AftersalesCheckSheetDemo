@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_choose_vehicle"
+        android:title="Choose Vehicle"
+        android:icon="@drawable/ic_stop">
+        <menu>
+            <item
+                android:id="@+id/action_AA1111"
+                android:title="@string/AA1111"
+                android:icon="@drawable/ic_launcher" />
+            <item
+                android:id="@+id/action_BB1234"
+                android:title="@string/BB1234"
+                android:icon="@drawable/ic_launcher" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_qrcode"
+        android:title="QRCode"
+        android:icon="@drawable/ic_stop" />
+    <item
+        android:id="@+id/action_stop"
+        android:title="@string/action_stop"
+        android:icon="@drawable/ic_stop" />
+</menu>

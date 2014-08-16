@@ -28,7 +28,7 @@ public class AftersalesCheckSheetDemoService extends Service {
         if (mLiveCard == null) {
             mLiveCard = new LiveCard(this, LIVE_CARD_TAG);
 
-            RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.aftersales_check_sheet_demo);
+            RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.aftersales_check_sheet_demo_state);
             mLiveCard.setViews(remoteViews);
 
             // Display the options menu when the live card is tapped.

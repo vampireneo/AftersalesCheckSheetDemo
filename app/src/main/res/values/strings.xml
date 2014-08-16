@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Aftersales Check Sheet Demo</string>
-    <string name="title_activity_aftersales_check_sheet_demo_service">Aftersales Check Sheet Demo LiveCard</string>
+    <string name="title_activity_aftersales_check_sheet_demo_service">Check Sheet Demo</string>
     <string name="action_stop">Stop</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">Aftersales Check Sheet Immersion</string>
@@ -10,5 +10,10 @@
     <string name="Loading">Loading...</string>
     <string name="Confirm">Confirm?</string>
     <string name="Done">Done</string>
+    <string name="title_activity_menu">Check Sheet Demo</string>
+    <string name="CheckSheetDemo">Check Sheet Demo</string>
+    <string name="AA1111">AA1111</string>
+    <string name="BB1234">BB1234</string>
+    <string name="regNo">regNo</string>
 
 </resources>
