@@ -19,9 +19,9 @@ import java.io.InputStreamReader;
 public class Json {
     public static JSONObject getJson(String url, String type){
 
-        InputStream is = null;
-        String result = "";
-        JSONObject jsonObject = null;
+        InputStream is;
+        String result;
+        JSONObject jsonObject;
 
         // HTTP
         try {
@@ -45,9 +45,9 @@ public class Json {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is,"utf-8"),8);
             StringBuilder sb = new StringBuilder();
-            String line = null;
+            String line;
             while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
+                sb.append(line).append("\n");
             }
             is.close();
             result = sb.toString();
@@ -68,9 +68,8 @@ public class Json {
 
     public static String getString(String url, String type){
 
-        InputStream is = null;
-        String result = "";
-        JSONObject jsonObject = null;
+        InputStream is;
+        String result;
 
         // HTTP
         try {
@@ -94,9 +93,9 @@ public class Json {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is,"utf-8"),8);
             StringBuilder sb = new StringBuilder();
-            String line = null;
+            String line;
             while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
+                sb.append(line).append("\n");
             }
             is.close();
             result = sb.toString();

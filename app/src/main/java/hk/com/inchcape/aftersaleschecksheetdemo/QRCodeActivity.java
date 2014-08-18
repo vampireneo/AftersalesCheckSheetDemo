@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -28,10 +27,7 @@ public class QRCodeActivity extends Activity {
     final static String TAG = "GlassWifiConnect";
 
     private Camera mCamera;
-    private CameraPreview mPreview;
     private Handler autoFocusHandler;
-
-    Button scanButton;
 
     ImageScanner scanner;
 
@@ -72,7 +68,7 @@ public class QRCodeActivity extends Activity {
         scanner.setConfig(0, Config.X_DENSITY, 3);
         scanner.setConfig(0, Config.Y_DENSITY, 3);
 
-        mPreview = new CameraPreview(this, mCamera, previewCb, autoFocusCB);
+        CameraPreview mPreview = new CameraPreview(this, mCamera, previewCb, autoFocusCB);
         FrameLayout preview = (FrameLayout)findViewById(R.id.cameraPreview);
         preview.addView(mPreview);
     }

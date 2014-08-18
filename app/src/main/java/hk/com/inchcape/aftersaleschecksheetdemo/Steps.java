@@ -13,7 +13,4 @@ public class Steps {
     public boolean checked;
     public String id;
 
-    public void Steps() {
-
-    }
 }

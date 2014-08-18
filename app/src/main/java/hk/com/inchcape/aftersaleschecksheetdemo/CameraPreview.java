@@ -14,7 +14,6 @@ import java.io.IOException;
  * Created by neochoi on 16/8/14.
  */
 public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback {
-    final static String TAG = "GlassWifiConnect";
 
     private SurfaceHolder mHolder;
     private Camera mCamera;

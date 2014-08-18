@@ -10,7 +10,7 @@
         android:layout_height="fill_parent"
         android:layout_alignParentLeft="false"
         android:text="@string/CheckSheetDemo"
-        android:textSize="60px"
+        android:textSize="40sp"
         android:layout_alignParentBottom="false"
         android:layout_alignParentTop="false"
         android:layout_alignParentEnd="false"
@@ -18,5 +18,17 @@
         android:background="#64000000"
         android:gravity="center_vertical|center_horizontal"
         android:padding="@dimen/card_margin" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="@dimen/card_margin"
+        android:layout_marginBottom="@dimen/card_margin"
+        android:src="@drawable/ic_inchcape_logo"
+        android:contentDescription="@string/inchcapeLogo"
+        android:alpha="0.4" />
 
 </RelativeLayout>

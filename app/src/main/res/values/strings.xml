@@ -15,5 +15,7 @@
     <string name="AA1111">AA1111</string>
     <string name="BB1234">BB1234</string>
     <string name="regNo">regNo</string>
+    <string name="inchcapeLogo">Inchcape Logo</string>
+    <string name="backgroundImage">Background Image</string>
 
 </resources>
