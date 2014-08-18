@@ -4,22 +4,22 @@
     <item
         android:id="@+id/action_choose_vehicle"
         android:title="Choose Vehicle"
-        android:icon="@drawable/ic_stop">
+        android:icon="@drawable/ic_cars">
         <menu>
             <item
                 android:id="@+id/action_AA1111"
                 android:title="@string/AA1111"
-                android:icon="@drawable/ic_launcher" />
+                android:icon="@drawable/ic_car" />
             <item
                 android:id="@+id/action_BB1234"
                 android:title="@string/BB1234"
-                android:icon="@drawable/ic_launcher" />
+                android:icon="@drawable/ic_car" />
         </menu>
     </item>
     <item
         android:id="@+id/action_qrcode"
         android:title="QRCode"
-        android:icon="@drawable/ic_stop" />
+        android:icon="@drawable/ic_qrcode" />
     <item
         android:id="@+id/action_stop"
         android:title="@string/action_stop"
