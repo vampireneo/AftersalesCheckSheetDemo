@@ -77,7 +77,7 @@ public class MainActivity extends Activity {
                                                      return true;
                                                  } else if (gesture == Gesture.TWO_TAP) {
                                                      Log.v(TAG, "TWO_TAP");
-                                                     am.playSoundEffect(Sounds.SUCCESS);
+                                                     //am.playSoundEffect(Sounds.SUCCESS);
                                                      setCheck(currentIndex, true);
                                                      return true;
                                                  } else if (gesture == Gesture.LONG_PRESS) {
@@ -106,7 +106,7 @@ public class MainActivity extends Activity {
                                                      return true;
                                                  } else if (gesture == Gesture.THREE_TAP) {
                                                      Log.v(TAG, "THREE_TAP");
-                                                     am.playSoundEffect(Sounds.DISALLOWED);
+                                                     //am.playSoundEffect(Sounds.DISALLOWED);
                                                      setCheck(currentIndex, false);
                                                      return true;
                                                  } else if (gesture == Gesture.TWO_LONG_PRESS) {
@@ -130,6 +130,8 @@ public class MainActivity extends Activity {
                                              }
                                          });
         regNo = getIntent().getExtras().getString(getString(R.string.regNo));
+        TextView state = (TextView) findViewById(R.id.state_text);
+        state.setText(getString(R.string.Loading) + " " + regNo + "...");
         new GetCheckSheetTask(this).execute(regNo);
     }
 
@@ -268,8 +270,10 @@ public class MainActivity extends Activity {
         if (id >= 0 && id < mSteps.size()) {
             Steps step = mSteps.get(id);
             step.checked = checked;
+            currentIndex = id + 1;
+            AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            am.playSoundEffect((checked? Sounds.SUCCESS : Sounds.DISALLOWED));
         }
-        currentIndex = id + 1;
         if (currentIndex >= mSteps.size()) {
             currentIndex = -2;
             //currentIndex = mSteps.size() - 1;
@@ -293,7 +297,7 @@ public class MainActivity extends Activity {
         else {
             setContentView(R.layout.aftersales_check_sheet_demo_state);
             TextView state = (TextView) findViewById(R.id.state_text);
-            if (id == -1) state.setText(getString(R.string.Loading));
+            if (id == -1) state.setText(getString(R.string.Loading) + " " + regNo + "...");
             else if (id == -2) state.setText(getString(R.string.Confirm));
             else if (id == -3) state.setText(getString(R.string.Done));
         }
