@@ -5,7 +5,7 @@
     <string name="title_activity_aftersales_check_sheet_demo_service">Check Sheet Demo</string>
     <string name="action_stop">Stop</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_main">Aftersales Check Sheet Immersion</string>
+    <string name="title_activity_main">Check Sheet Demo</string>
     <string name="APIDomain">http://api.inchcape.com.hk</string>
     <string name="Loading">Loading</string>
     <string name="Confirm">Confirm?</string>
@@ -17,5 +17,9 @@
     <string name="regNo">regNo</string>
     <string name="inchcapeLogo">Inchcape Logo</string>
     <string name="backgroundImage">Background Image</string>
+    <string name="title_activity_slides">Slides Remote Demo</string>
+    <string name="ScanQRCode">Scan QR Code</string>
+    <string name="prev">prev</string>
+    <string name="next">next</string>
 
 </resources>
