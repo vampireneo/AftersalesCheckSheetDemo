@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AftersalesCheckSheetDemoService">
+
+    <TextView
+        android:id="@+id/state_text"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="false"
+        android:text="@string/title_activity_slides"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentEnd="false"
+        android:textColor="#ffffffff"
+        android:background="#64000000"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="@dimen/card_margin" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/lastStep"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/card_margin"
+        android:layout_marginRight="@dimen/card_margin" />
+
+</RelativeLayout>

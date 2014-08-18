@@ -1,23 +1,17 @@
 package hk.com.inchcape.aftersaleschecksheetdemo;
 
-import com.google.android.glass.app.Card;
-import com.google.android.glass.media.Sounds;
-import com.google.android.glass.touchpad.Gesture;
-import com.google.android.glass.touchpad.GestureDetector;
-import com.google.android.glass.widget.CardScrollAdapter;
-import com.google.android.glass.widget.CardScrollView;
-
 import android.app.Activity;
-import android.content.Context;
-import android.media.AudioManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.MotionEvent;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.Toast;
+import android.widget.TextView;
+
+import com.google.android.glass.touchpad.Gesture;
+import com.google.android.glass.touchpad.GestureDetector;
+import com.google.android.glass.widget.CardScrollView;
 
 /**
  * An {@link Activity} showing a tuggable "Hello World!" card.
@@ -38,7 +32,9 @@ public class SlidesActivity extends Activity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        setContentView(R.layout.aftersales_check_sheet_demo_state);
+        setContentView(R.layout.slides_demo);
+        TextView instruction = (TextView) findViewById(R.id.state_text);
+        instruction.setText("Slides Remote Demo");
 
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -64,11 +60,11 @@ public class SlidesActivity extends Activity {
                     return true;
                 } else if (gesture == Gesture.SWIPE_RIGHT) {
                     Log.v(TAG, "SWIPE_RIGHT");
-                    new DoSlidesTask(me).execute(getString(R.string.prev));
+                    new DoSlidesTask(me).execute(getString(R.string.next));
                     return true;
                 } else if (gesture == Gesture.SWIPE_LEFT) {
                     Log.v(TAG, "SWIPE_LEFT");
-                    new DoSlidesTask(me).execute(getString(R.string.next));
+                    new DoSlidesTask(me).execute(getString(R.string.prev));
                     return true;
                 } else if (gesture == Gesture.SWIPE_DOWN) {
                     Log.v(TAG, "SWIPE_DOWN");
@@ -105,6 +101,11 @@ public class SlidesActivity extends Activity {
     }
 
     @Override
+    public boolean onGenericMotionEvent(MotionEvent event) {
+        return mGestureDetector != null && mGestureDetector.onMotionEvent(event);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
     }
@@ -129,7 +130,23 @@ public class SlidesActivity extends Activity {
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(activity, "Action done: " + s, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(activity, "Action done: " + s, Toast.LENGTH_SHORT).show();
+            s = s.replace("\"", "").replace("\n", "");
+            if (s.equals("next") || s.equals("prev")) {
+                TextView step = (TextView) findViewById(R.id.lastStep);
+                step.setText("Last action: " + s);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        new DoSlidesTask(activity).execute("notes");
+                    }
+                }, 500);
+            }
+            else {
+                TextView instruction = (TextView) findViewById(R.id.state_text);
+                instruction.setText("Notes: " + s);
+            }
         }
     }
 

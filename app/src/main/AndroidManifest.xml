@@ -17,7 +17,19 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_inchcape_logo"
         android:label="@string/app_name" >
-        <activity android:name=".LiveCardMenuActivity" />
+
+        <activity
+            android:name=".SlidesActivity"
+            android:icon="@drawable/ic_inchcape_logo"
+            android:label="@string/title_activity_slides" >
+            <intent-filter>
+                <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.google.android.glass.VoiceTrigger"
+                android:resource="@xml/voice_trigger" />
+        </activity>
 
         <service
             android:name=".AftersalesCheckSheetDemoService"
@@ -32,28 +44,19 @@
                 android:resource="@xml/voice_trigger" />
         </service>
 
+        <activity android:name=".LiveCardMenuActivity" />
+
         <activity
             android:name=".MainActivity"
             android:icon="@drawable/ic_inchcape_logo"
             android:immersive="true"
             android:label="@string/title_activity_main" >
         </activity>
+
         <activity
             android:name=".QRCodeActivity"
             android:icon="@drawable/ic_inchcape_logo"
             android:label="@string/ScanQRCode" >
-        </activity>
-        <activity
-            android:name=".SlidesActivity"
-            android:icon="@drawable/ic_inchcape_logo"
-            android:label="@string/title_activity_slides" >
-            <intent-filter>
-                <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />
-            </intent-filter>
-
-            <meta-data
-                android:name="com.google.android.glass.VoiceTrigger"
-                android:resource="@xml/voice_trigger" />
         </activity>
     </application>
 
